@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+  <title>Bienvenida</title>
+</head>
+
+<body>
+<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>
+
+<main class="contain">
+  <div class="container rounded-5">
+    <div class="p-5 mb-4 bg-light rounded-5">
+      <h1 class="display-5 fw-bold">Gestión de Alumnos </h1>
+      <h2 class="col-md-8 fs-4 text-center">Una aplicación de ejemplo de Spring MVC con Thymeleaf.</h2>
+      <h1 sec:authorize="!isAuthenticated()" class="display-4">Muy buenas, visitante</h1>
+      <h1 sec:authorize="isAuthenticated()" class="display-4">Muy buenas, <span sec:authentication="name"></span></h1>
+      <p class="text-center">
+        <a class="btn btn-lg btn-success" th:href="@{/index}">Continuar</a>
+      </p>
+    </div>
+  </div>
+</main>
+
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{})}"></th:block>
+
+</body>
+</html>

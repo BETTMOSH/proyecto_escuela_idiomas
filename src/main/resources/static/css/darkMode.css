@@ -1,0 +1,16 @@
+
+body {
+    background-color: #222; /* Color de fondo oscuro */
+    color: #fff; /* Color de texto claro */
+}
+
+a {
+    color: #66d9ef; /* Color de enlace */
+}
+
+.btn {
+    background-color: #555; /* Color de fondo para botones */
+    color: #fff; /* Color de texto para botones */
+}
+
+/* Agrega más reglas de estilo según sea necesario */

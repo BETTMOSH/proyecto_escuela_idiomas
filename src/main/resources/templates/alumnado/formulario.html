@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+
+    <title>Formulario de solicitud</title>
+
+</head>
+<body class="formulario">
+
+<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>
+
+    <h1 th:text="#{form}" class="mt-5"></h1>
+
+    <form method="post" action="#" id="formAlumno" enctype="multipart/form-data"
+          th:action="@{${modoEdicion} ? @{/editar/submit} : @{/nuevo/submit}}"
+          th:object="${alumnoDtos}"> <!--TODO:se ha corregido el error de bloqueo de archivo con enctype-->
+        <h4 th:text="#{new}">
+            <span th:text="${modoEdicion} ? 'Editar alumno' : 'Nuevo Alumno'">Nuevo</span>
+        </h4>
+        <div>
+
+        <input type="hidden" id="id" name="id" th:field="*{id}" />
+
+        <div class="form-group" th:classappend="${#fields.hasErrors('nombre')} ? 'has-error'">
+            <label th:text="#{name}" class="form-label" for="nombre"></label>
+            <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control"/>
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:text="#{lastname}" for="apellidos"></label>
+            <input type="text" id="apellidos" name="apellidos" th:field="*{apellidos}" class="form-control"/>
+            <span th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label th:text="#{email}" for="email"></label>
+            <input type="email" id="email" name="email" th:field="*{email}" class="form-control" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+        </div>
+        <br>
+        <div class="form-group"
+            th:classappend="${#fields.hasErrors('tipoIdioma')} ? 'has-error'">
+            <select id="tipoIdioma" th:field="*{tipoIdioma}">
+                <option th:text="#{langu}" value="" selected></option>
+                <option th:each="tipo : ${listaTipos}"
+                        th:value="${tipo.id}" th:text="${tipo.nombre}"></option>
+            </select>
+            <span th:if="${#fields.hasErrors('tipoIdioma')}" th:errors="*{tipoIdioma}"
+                  class="help-block" id="tipo-error">Errores</span>
+        </div>
+        <br>
+
+        <div th:replace="~{fragmentos/listaSubtipos::listaSubtipos}"></div>
+        <br>
+
+        <div class="form-group"
+            th:classappend="${#fields.hasErrors('fechaNacimiento')} ? 'has-error'">
+            <label th:text="#{date}" class="form-label" for="fechaNacimiento" ></label>
+            <input class="form-control" type="date" id="fechaNacimiento" placeholder="Fecha nac." th:field="*{fechaNacimiento}" />
+            <span th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"
+                  class="help-block" id="fechaNacimiento-error">Errores</span>
+            <br>
+            <label th:text="#{mod}" for="modalidad"></label>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="modalidad" name="modalidad" th:field="*{presencial}">
+                <label th:text="#{pers1}" class="form-check-label" for="modalidad"></label>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="distancia" name="distancia">
+                <label th:text="#{pers2}" class="form-check-label" for="distancia"></label>
+            </div>
+
+            <div class="form-group">
+                <label th:text="#{photo}" for="fichero" >Foto</label>
+                <input type="hidden" th:field="*{foto}">
+                <img th:if="${alumnoDtos.foto != null }"
+                     id="image-preview" th:src="@{*{foto}}" alt="imagen previa de alumno">
+                <input type="file" id="fichero" name="fichero" class="form-control" >
+            </div>
+        </div>
+        <br>
+        <button id="botonform" th:text="#{send}" type="submit" class="btn btn-primary"></button>
+        <br>
+
+        </div>
+    </form>
+
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{::script})}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/borrar.js}"></script>
+</th:block>
+</body>
+</html>

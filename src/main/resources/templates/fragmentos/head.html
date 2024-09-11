@@ -1,0 +1,19 @@
+<head th:fragment="encabezados(titulos, enlaces)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title th:replace="${titulos}">Titulo</title>
+
+  <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" th:href="@{/css/index.css}" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/formulario.css}" />
+  <link rel="stylesheet" th:href="@{/css/contacto.css}">
+  <!-- Link a los estilos propios -->
+  <th:block th:if="${session.modoOscuro}">
+    <link th:href="@{/css/darkmode.css}" rel="stylesheet"/>
+  </th:block>
+  <th:block th:replace="${enlaces}" />
+
+</head>

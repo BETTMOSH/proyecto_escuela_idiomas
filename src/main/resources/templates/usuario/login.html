@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<!--<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>-->
+<main class="container contain">
+    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+        <div class="card">
+            <div class="card-header">Acceso a la aplicación</div>
+
+            <div class="card-body pt-3">
+                <span th:if="${param.error}">Credenciales no válidas</span>
+                <form sec:authorize="!isAuthenticated()" th:action="@{/usuario/login}" method="post">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input id="login-username" type="text" class="form-control" name="username" placeholder="username">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                    </div>
+
+                    <!-- Button -->
+                    <div class="col-sm-12">
+                        <button id="btn-login" type="submit" class="btn btn-success">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <div class="checkbox mb-3">
+                    <label for="recuerdame">Recuérdame</label>
+                    <input type="checkbox" id="recuerdame" value="recuerdame">
+                </div>
+                <p class="text-center mt-3">¿No tienes cuenta?
+                    <a class="text-primary" th:href="@{/usuario/signup}">Crear cuenta</a>
+                </p>
+                <p sec:authorize="isAuthenticated()">Usted ya ha iniciado una sesión</p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>

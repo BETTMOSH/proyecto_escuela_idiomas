@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+    <meta charset="UTF-8">
+    <title>Listado de Alumnos</title>
+
+</head>
+<body  class="listadoform">
+<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>
+<br>
+<div class="container-fluid">
+    <div class="card">
+        <h1 th:text="#{alumnolistado}" class="text-black">Lista de Alumnos</h1>
+
+        <!-- Buscador filtro -->
+        <form method="post" action="#">
+            <label th:text="#{filtrar}" for="buscarPorNombre" class="form-label text-black">Filtrar por nombre</label>
+            <input type="text" class="form-control" id="buscarPorNombre" th:placeholder="#{placeholder}" name="nombre"/>
+        </form>
+
+        <div class="card-body">
+            <!-- Lista filtrada -->
+            <table th:replace="~{fragmentos/listaAlumnos::listasAlumnos}"></table>
+
+            <!-- Botonera paginación -->
+            <div class="row justify-content-center">
+                <div th:if="${alumnosList.totalPages != 1}" class="form-group col-2">
+                    <ul class="pagination">
+
+                        <!-- Primer página -->
+                        <li th:classappend="${alumnosList.number == 0} ? 'disabled'">
+                            <a class="page-link" th:href="@{../listado(page=1)}">&laquo;</a>
+                        </li>
+
+                        <!-- Página anterior -->
+                        <li th:classappend="${alumnosList.number == 0} ? 'disabled'">
+                            <a class="page-link" th:href="@{../listado(page=${alumnosList.number})}">&larr;</a>
+                        </li>
+
+                        <!-- Páginas intermedias -->
+                        <li th:each="page : ${#numbers.sequence(1, alumnosList.totalPages)}"
+                            th:classappend="${alumnosList.number == (page-1)} ? 'active pointer-disabled'">
+                            <a class="page-link" th:href="@{../listado(page=${page})}" th:text="${page}"></a>
+                        </li>
+
+                        <!-- Página siguiente -->
+                        <li th:classappend="${alumnosList.number == (alumnosList.totalPages - 1)} ? 'disabled'">
+                            <a class="page-link" th:href="@{../listado(page=${alumnosList.number + 2})}">&rarr;</a>
+                        </li>
+
+                        <!-- Última página -->
+                        <li th:classappend="${alumnosList.number == (alumnosList.totalPages - 1)} ? 'disabled'">
+                            <a class="page-link" th:href="@{../listado(page=${alumnosList.totalPages})}">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- div para el modal -->
+            <div id="paraelmodal"></div>
+
+
+        </div>
+    </div>
+    <br>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" href="/nuevo" class="btn btn-primary">Agregar Estudiante</a>
+</div>
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{::script})}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/borrar.js}"></script>
+</th:block>
+
+</body>
+</html>

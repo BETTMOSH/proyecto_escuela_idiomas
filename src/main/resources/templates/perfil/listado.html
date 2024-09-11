@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+    <title>Listado de perfiles</title>
+
+</head>
+
+<body>
+<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>
+
+<div class="container-fluid">
+
+
+    <div class="card">
+        <h3>Lista de perfiles</h3>
+
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Usuarios</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Ops</th>
+                </thead>
+                <tbody>
+                <tr th:each="perfil : ${listaPerfiles}">
+                    <td class="perfilId" th:text="${perfil.id}">ID</td>
+                    <td th:text="${perfil.nombre}">Nombre</td>
+                    <td th:text="${perfil.descripcion}">Malu/td>
+                    <!--<td><span th:each="usuario,iterStat : ${perfil.usuarios}"
+                               th:text="${usuario.username} + ${!iterStat.last ? ', ' : ''}"></span></td>-->
+                    <td th:text="${#strings.listJoin(perfil.usuarios.![username], ',')}"></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a th:href="@{/perfil/edit/{id}(id=${perfil.id})}" aria-label="Editar">
+                            <span class="fas fa-edit" aria-hidden="true"></span></a>
+                        <a href="#" class="lnkBorrarPerfil" aria-label="Borrar">
+                            <span class="fas fa-trash" aria-hidden="true"></span></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{::script})}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/borrar.js}"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>-->
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+
+                <form sec:authorize="!isAuthenticated()"
+                      th:action="@{/usuario/signup}" method="post"
+                      th:object="${usuarioDto}">
+                    <br>
+                    <h2 class="text-center">Registro de usuario</h2>
+                    <br>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                        <input id="username" type="text" class="form-control" th:field="*{username}"
+                               placeholder="Introduzca username">
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                              class="help-block" id="username-error">Errores</span>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                        <input id="email" type="email" class="form-control" th:field="*{email}"
+                               placeholder="Introduzca email">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                        <input id="password" type="password" class="form-control" th:field="*{password}"
+                               placeholder="Introduzca contraseña">
+                    </div>
+
+                    <div class="form-check mb-3">
+
+                        <div th:each="perfil : ${listaPerfiles}">
+                            <input  type="checkbox" class="form-check-input" th:field="*{perfiles}"
+                                    th:value="${perfil.id}"
+                                    th:text="${perfil.nombre}">
+                            <!--
+                            <label th:for="${perfil.nombre}" th:text="${perfil.nombre}">Perfil</label>
+                            -->
+                        </div>
+                    </div>
+
+
+                    <!-- Button -->
+                    <div class="col-sm-12">
+                        <button id="btn-login" type="submit" class="btn btn-success">Crear usuario</button>
+                    </div>
+
+                <div class="card-footer text-center">
+                    <p class="text-center mt-3">¿Ya tienes cuenta?<br>
+                        <a class="text-primary" href="#" th:href="@{/usuario/login}">Iniciar sesión</a>
+                    </p>
+                    <p sec:authorize="isAuthenticated()">Usted ya ha iniciado una sesión</p>
+                </div>
+            </form>
+
+
+
+            <div class="social-login">
+                <h3>log in via</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-login__icon fab fa-instagram"></a>
+                    <a href="#" class="social-login__icon fab fa-facebook"></a>
+                    <a href="#" class="social-login__icon fab fa-twitter"></a>
+                </div>
+            </div>
+        </div>
+        <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

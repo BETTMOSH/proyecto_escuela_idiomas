@@ -1,0 +1,99 @@
+<nav th:fragment="barra-inicio" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+    <div class="container-fluid" >
+        <a class="navbar-brand" th:href="@{/index}">Active Language</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto ">
+                <li class="nav-item">
+                    <a th:text="#{home}" class="nav-link" aria-current="page" th:href="@{/bienvenida}">Inicio</a>
+                </li>
+                <li class="nav-item" >
+                    <a th:text="#{about}" class="nav-link" th:href="@{/contacto}">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a th:text="#{galeria}" class="nav-link" th:href="@{/galeria}">Galeria</a>
+                </li>
+
+                <div class="navbar-nav ml-auto">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <span th:text="#{listado}" >Listados</span> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a sec:authorize="isAuthenticated()" class="nav-link" id="listAlum" th:href="@{/listado}">Listado Alumnos</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ul>
+
+            <!-- se añade el selector de idiomas unas banderas y un "title" al pasar el puntero el raton-->
+            <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{''(lang=en_US)}">
+                        <img src="/image/circle-png.png" alt="English" class="flag-icon" th:title="English">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{''(lang=es_ES)}">
+                        <img th:src="@{/image/español.png}" alt="Spanish" class="flag-icon" th:title="Español">
+                    </a>
+                </li>
+                </li>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <span th:text="${#authentication.name}">Idiomas</span> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><span class="dropdown-item"
+                                      th:text="#{header.menu.visitas} + ' App: ' + ${session.numVisitasApp}"></span>
+                            </li>
+                            <li><span class="dropdown-item"
+                                      th:text="#{header.menu.visitas} + ' index: ' + ${session.numVisitasIndex}"></span>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a sec:authorize="hasRole('ROLE_ADMIN')"
+                                   class="dropdown-item" th:href="@{/perfil/new}">
+                                    <i class="fas fa-plus-circle"></i> Añadir perfil</a>
+                            </li>
+
+                            <li>
+                                <a sec:authorize="hasRole('ROLE_ADMIN')" id="añadir" class="nav-link" th:href="@{/nuevo}">
+                                    <i class="fas fa-plus-circle"></i> Añadir</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item"
+                                   href="javascript:document.getElementById('logoutForm').submit()">
+                                <i class="fas fa-sign-out-alt"></i>Salir</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </ul>
+            <form th:action="@{/usuario/logout}" method="post" id="logoutForm"></form>
+            <form class="d-flex">
+                <input th:placeholder="#{placeholder.search}" class="form-control me-2" type="search"
+                       placeholder="Buscar" aria-label="Search">
+                <button th:text="#{search}" class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>

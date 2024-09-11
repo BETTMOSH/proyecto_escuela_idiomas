@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+  <title>Editar Preferencias</title>
+</head>
+
+<body>
+
+<header th:replace="~{fragmentos/barraInicio::barra-inicio}"></header>
+<main class="container py-5">
+  <div class="row g-5">
+    <div class="col-md-7 col-lg-8">
+      <form method="post" action="#"
+            th:action="@{/prefs/edit}"
+            th:object="${preferenciasDto}">
+        <h4 class="mb-3">Editar preferencias</h4>
+        <div class="row g-3">
+          <input type="hidden" id="id" name="id" th:field="*{id}" />
+          <div class="col-sm-6 form-check form-switch">
+            <input type="checkbox" class="form-check-input" id="darkMode" th:field="*{darkMode}">
+            <label class="form-check-label" for="darkMode">Activar modo oscuro</label>
+          </div>
+          <div class="col-sm-6">
+            <label for="idioma">Idioma</label>
+            <select id="idioma" th:field="*{idioma}">
+              <option th:each="opcion : ${opcionesIdioma}" th:value="${opcion.key}" th:text="${opcion.value}"></option>
+            </select>
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{::script})}">
+</th:block>
+
+</body>
+</html>
+

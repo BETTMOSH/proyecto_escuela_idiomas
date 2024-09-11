@@ -1,0 +1,42 @@
+<table class="table table-striped" id="listaAlumnos" th:fragment="listasAlumnos">
+        <thead>
+        <tr>
+            <th th:text="#{id}">Id</th>
+            <th th:text="#{name}">Nombre</th>
+            <th th:text="#{lastname}">Apellido</th>
+            <th th:text="#{photo}">Foto</th>
+            <th th:text="#{date}">Fecha de Nacimiento</th>
+            <th th:text="#{email}">Email</th>
+            <th th:text="#{idioma}">Idioma</th>
+            <th th:text="#{subt}">Dialecto</th>
+            <th th:text="#{modo}">Presencial</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Acciones</th>
+        </tr>
+        </thead>
+        <!--mostramos el listado de alumnos -->
+        <tbody>
+        <tr th:each="al : ${alumnosList}">
+            <td th:text="${al.id}"></td>
+            <td th:text="${al.nombre}"></td>
+            <td th:text="${al.apellidos}"></td>
+            <td><img th:src="@{${al.foto}}" width="50" /></td>
+            <td th:text="${al.fechaNacimiento}"></td>
+            <td th:text="${al.email}"></td>
+            <td th:text="${al.tipoIdioma.nombre}"></td>
+            <td th:text="${al.subtipo?.nombre}"></td>
+            <td>
+                <span th:if="${al.isPresencial()}" th:text="Sí">Sí</span>
+                <span th:unless="${al.isPresencial()}" th:text="No">No</span>
+            </td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/editar/{id}(id=${al.id})}" aria-label="Editar">
+                    <span class="fas fa-edit" aria-hidden="true"></span></a>
+
+                <a href="#" class="lnkBorrarAlumno" aria-label="Borrar">
+                <span class="fas fa-trash" aria-hidden="true"></span></a>
+
+
+        </td>
+    </tr>
+</tbody>
+</table>

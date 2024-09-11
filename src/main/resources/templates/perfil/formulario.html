@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+    <title>Formulario de perfiles</title>
+</head>
+
+<body>
+
+<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>
+<br><br><br>
+<form method="post" action="#"
+      th:action="${modoEdicion} ? @{/perfil/edit} : @{/perfil/new}"
+      th:object="${perfilDto}">
+    <h4 th:text="${modoEdicion} ? 'Editar perfil' : 'Nuevo perfil'">Nuevo perfil</h4>
+    <div>
+        <input type="hidden" id="id" name="id" th:field="*{id}" />
+        <div class="form-group"
+             th:classappend="${#fields.hasErrors('nombre')} ? 'has-error'">
+            <label class="form-label" for="nombre" th:text="#{perfil.formulario.nombre}">Nombre</label>
+            <input class="form-control" type="text" id="nombre"
+                   placeholder="Nombre" th:field="*{nombre}" />
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+                  class="help-block" id="nombre-error">Errores</span>
+        </div>
+        <div class="form-group"
+             th:classappend="${#fields.hasErrors('descripcion')} ? 'has-error'">
+            <label class="form-label" for="descripcion" th:text="#{perfil.formulario.descripcion}">Descripcion</label>
+            <input class="form-control" type="text" id="descripcion"
+                   placeholder="Descripción" th:field="*{descripcion}" />
+            <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"
+                  class="help-block" id="descripcion-error">Errores</span>
+        </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{::script})}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/borrar.js}"></script>
+</th:block>
+
+</body>
+</html>

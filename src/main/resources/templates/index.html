@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+    <!-- Estilo propio -->
+
+
+    <title>Escuela de Idiomas</title>
+</head>
+<body class="fondopantalla">
+<header>
+<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>
+<br>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="switchModoOscuro" th:checked="${session.modoOscuro}" onclick="toggleModoOscuro()">
+        <label class="form-check-label" for="switchModoOscuro"></label>
+    </div>
+
+    <div class="page-heading fancy-heading col-sm-12 clearfix asset-bg alt-one light-style fancy-image " style="background-image: url(https://www.openinnova.es/wp-content/uploads/2013/10/background.jpg&quot;); background-position: 50% 0px; display: block;">
+        <div class="contain">
+            <div class="heading-text">
+                <h1 th:text="#{greeting}" class="entry-title"></h1>
+                <h2  th:text="#{welcome}">Active-Language</h2>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<main>
+    <div class="row caja text-center">
+        <div class="col-md-6" >
+            <img src="/image/hola.webp" alt="imagen" class="img-fluid mx-auto custom-image">
+        </div>
+        <div class="col-md-6">
+            <img src="/image/languages.jpg" alt="imagen" class="img-fluid mx-auto custom-image">
+        </div>
+    </div>
+    <br>
+
+    <section>
+<div class="container" id="page">
+    <div class="row">
+    <p class="somos -bold" th:text="#{we-are}"></p>
+    <!-- se ha usado bootstrap y css para modificar las imagenes -->
+    <div class="container-fluid">
+        <div class="image-container row align-items-center">
+            <div class="col-md-6">
+                <a href="https://es.wikipedia.org/wiki/Idioma_espa%C3%B1ol">
+                    <img src="/image/hello.jpg" alt="Español"
+                         data-toggle="tooltip" data-placement="top"
+                         th:title="#{tooltip.mensEs}"/></a>
+            </div>
+            <div class="col-md-6">
+                <a href="https://es.wikipedia.org/wiki/Idioma_franc%C3%A9s">
+                    <!-- usamos img-derecha -->
+                    <img src="/image/escuela-idiomas.jpg" alt="Frances"
+                         data-toggle="tooltip" data-placement="top"
+                         th:title="#{tooltip.mensFr}"/>
+                </a>
+            </div>
+            <br>
+
+            <p th:text="#{parraf}" class="parrafo text-center"></p>
+            <p th:text="#{parraf2}" class="parrafo text-center"></p>
+            <p th:text="#{parraf3}" class="parrafo text-center"></p>
+
+
+
+
+            <div class="col-md-6">
+                <a href="https://es.wikipedia.org/wiki/Idioma_alem%C3%A1n">
+                    <img src="/image/imagenescuela.jpg" alt="Aleman"
+                         data-toggle="tooltip" data-placement="top"
+                         th:title="#{tooltip.mensAl}"/>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="https://es.wikipedia.org/wiki/Idioma_ingl%C3%A9s">
+                    <!-- usamos img-derecha para mover las imagenes a la derecha -->
+                    <img src="/image/clase-frances.jpg" alt="Ingles" style="width: 100%;"
+                         data-toggle="tooltip" data-placement="top"
+                         th:title="#{tooltip.mensEn}"/>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <br>
+</div>
+    </div>
+    </section>
+<br>
+    <!-- dividir con una linea esta seccion -->
+    <hr>
+    <br>
+
+    <section class="sec1">
+        <div class="text-center">
+            <!-- Columna con fotos -->
+            <div>
+                <img src="/image/titulacion.jpg" alt="imagennes" class="img-fluid rounded-4">
+                <br>
+                <br>
+                <div class="video-container d-flex justify-content-center align-items-center">
+                    <iframe class="rounded-4" width="580" height="335" src="https://www.youtube.com/embed/GpycTUEd0J4?si=naH6e1oNowgQsJY-" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <br>
+                <img src="/image/PalacioCibeles.jpg" alt="Te esperamos en Madrid" class="img-fluid rounded-4"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imagenModal"
+                     data-imagen="/image/PalacioCibeles.jpg">
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <div class="mapa" >
+        <!-- Google Maps iframe -->
+        <div class="text-center">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12152.818904021748!2d-3.6521859500000002!3d40.40431525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1700787875586!5m2!1ses!2ses"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <h2 class="text-body-emphasis">Visitanos en:</h2>
+        <p class="text-body-emphasis">Calle de la Cruz, 2694, 99161 Madrid</p>
+        <p class="text-body-emphasis">Teléfono: (034)-941454-545</p>
+        <p class="text-body-emphasis">Email: support@active.com</p>
+    </div>
+</main>
+<footer class="container2 ">
+    <div class="text-center">
+        <p class="text-light">&copy; 2023 Escuela de Idiomas    Active-Language</p>
+    </div>
+
+    <div id="redes-sociales">
+        <!-- Botón y logotipo de Facebook -->
+        <a th:href="@{'https://www.facebook.com/sharer/sharer.php?u='}" target="_blank" class="text-light">
+            <img src="/image/face.png" alt="Facebook" class="img-fluid redes"/>
+            Facebook
+        </a>
+
+        <!-- Botón y logotipo de Twitter -->
+        <a th:href="@{'https://twitter.com/intent/tweet?url='}" target="_blank" class="text-light">
+            <img src="/image/twitter_x_musk_logo14.jpg" alt="Twitter" class=" img-fluid redes "/>
+            Twitter X
+        </a>
+        <!-- Botón y logotipo de instagram -->
+        <a th:href="@{'https://www.instagram.com/sprachschule_aktiv_freising/'}" target="_blank" class="text-light">
+            <img src="/image/instagram.png" alt="Facebook" class="img-fluid redes"/>
+            Instagram
+        </a>
+
+        <!-- Botón y logotipo de whatssapp -->
+        <a th:href="@{'https://www.whatsapp.com/'}" target="_blank" class="text-light">
+            <img src="/image/whats.png" alt="Twitter" class="img-fluid redes"/>
+            Whatsapp
+        </a>
+    </div>
+</footer>
+<div th:replace="~{fragmentos/galeriamodal::galeriamodal}"></div>
+
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{::script})}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/borrar.js}"></script>
+</th:block>
+</body>
+</html>
+
+
+
+

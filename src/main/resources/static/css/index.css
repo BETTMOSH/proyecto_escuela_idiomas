@@ -1,0 +1,184 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Estilos para el header */
+.fondopantalla {
+    background-size: cover;
+    background: linear-gradient( #ffffff,#467980);
+
+}
+header {
+    background-color: #fcfcfc;
+    color: #000000;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 20px 20px 0 0; /* Ajusta los valores según sea necesario */
+}
+
+.contain{
+
+    background: linear-gradient( #ffffff,#467980);
+    border-radius: 5% 5% 15% 15%;
+    overflow: hidden;
+    display: block;
+}
+
+.container {
+    background-color: #d9dee3;
+    background-color: rgba(255, 255, 255, 0.65);
+    border-radius: 5% 5% 20% 20%;
+    overflow: hidden;
+    display: block;
+}
+
+.container {
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.73);
+}
+
+.header {
+    padding: 20px;
+}
+h1, h2, h3, h4 {
+    color: #000000;
+    text-shadow: #6c6b6b 0.0em 0.0em 0.0em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
+
+.parrafo{
+    padding-top: 15px;
+}
+
+h1 {
+    padding-top: 50px;
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 35px;
+
+}
+
+.entry-title{
+    font-size: 50px;
+    font-weight: 100;
+    padding-top: 30px;
+    text-align: center;
+
+}
+
+.somos {
+   font-size: 40px;
+    padding-top: 20px;
+    text-align: center;
+
+}
+
+p {
+    font-size: 18px;
+}
+
+
+.image-container img {
+    max-width: 100%;
+    height: 360px;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+}
+
+#redes-sociales a {
+    display: inline-block;
+    margin: 5px;
+    color: #bdbcbc;
+    text-shadow: #ffffff 0.1em 0.1em 0.2em;
+}
+
+#redes-sociales .redes {
+    width: 20px;
+    height: 20px;
+}
+.page-heading {
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-image{
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1024px;
+    aspect-ratio: auto 1024 / 560;
+}
+.sec1{
+    background: linear-gradient( #ffffff,#467980);
+    border-radius: 5% 5% 15% 15%;
+    overflow: hidden;
+    display: block;
+}
+.mapa{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    display: grid;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.container2{
+    background-color: #000000;
+    background-color: rgba(7, 7, 7, 0.65);
+   padding: 25px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+/*modo oscuro*/
+/*
+body {
+    background-color: #222; !* Color de fondo oscuro *!
+    color: #fff; !* Color de texto claro *!
+}
+
+a {
+    color: #66d9ef; !* Color de enlace *!
+}
+
+.btn {
+    background-color: #555; !* Color de fondo para botones *!
+    color: #fff; !* Color de texto para botones *!
+}
+*/
+

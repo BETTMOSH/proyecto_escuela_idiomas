@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="~{fragmentos/head::encabezados(~{::title}, ~{})}">
+
+    <title>Galeria de fotos</title>
+</head>
+<body class="galery">
+
+<nav th:replace="~{fragmentos/barraInicio::barra-inicio}"></nav>
+
+<div class="row " >
+  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+    <img
+            src="/image/1.jpg"
+            class="w-100 shadow-1-strong rounded mb-4"
+            alt="No importa que idiomas hables, siempre seras 'Bienvenido'"
+            data-bs-toggle="modal"
+            data-bs-target="#imagenModal"
+            data-imagen="/image/1.jpg"
+    />
+
+    <img
+            src="/image/titulos-de-idiomas.jpg"
+            class="w-100 shadow-1-strong rounded mb-4"
+            alt="No te lo pienses mas y apuntate al idioma que prefieras"
+            data-bs-toggle="modal"
+            data-bs-target="#imagenModal"
+            data-imagen="/image/titulos-de-idiomas.jpg"
+    />
+  </div>
+
+  <div class="col-lg-4 mb-4 mb-lg-0">
+    <img
+            src="/image/6.webp"
+            class="w-100 shadow-1-strong rounded mb-4"
+            alt="Enseñanzas personalizadas"
+            data-bs-toggle="modal"
+            data-bs-target="#imagenModal"
+            data-imagen="/image/6.webp"
+    />
+
+    <img
+            src="/image/5.jpg"
+            class="w-100 shadow-1-strong rounded mb-4"
+            alt="Nuestro centro te esta esperando"
+            data-bs-toggle="modal"
+            data-bs-target="#imagenModal"
+            data-imagen="/image/5.jpg"
+    />
+
+    <img
+            src="/image/4.avif"
+            class="w-100 shadow-1-strong rounded mb-4"
+            alt="Los idimas conectas naciones"
+            data-bs-toggle="modal"
+            data-bs-target="#imagenModal"
+            data-imagen="/image/4.avif"
+    />
+    <br>
+    <p class="text-center text-white">"Acompañanos a crear más recuerdos dentro del fabuloso mundo de los idiomas"</p>
+
+  </div>
+
+  <div class="col-lg-4 mb-4 mb-lg-0">
+    <img
+            src="/image/2.jpg"
+            class="w-100 shadow-1-strong rounded mb-4"
+            alt="Bienvenidos sean todos"
+            data-bs-toggle="modal"
+            data-bs-target="#imagenModal"
+            data-imagen="/image/2.jpg"
+    />
+
+    <img
+            src="/image/4.jpg"
+            class="w-100 shadow-1-strong rounded mb-4"
+            alt="Enhorabuena a los alumnos de B2-Ingles"
+            data-bs-toggle="modal"
+            data-bs-target="#imagenModal"
+            data-imagen="/image/4.jpg"
+    />
+
+  </div>
+</div>
+
+        <!-- Modal de la galeria -->
+<div th:replace="~{fragmentos/galeriamodal::galeriamodal}"></div>
+
+<th:block th:replace="~{fragmentos/bloque-final::bloquefinal(~{::script})}">
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/js/borrar.js}"></script>
+</th:block>
+</body>
+</html>

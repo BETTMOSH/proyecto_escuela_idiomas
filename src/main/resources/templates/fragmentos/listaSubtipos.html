@@ -1,0 +1,7 @@
+<div class="col-sm-6" id="listaSubtipos" th:fragment="listaSubtipos">
+    <label th:text="#{subt}" for="subtipo">Dialecto</label>
+    <select id="subtipo" name="subtipo">
+        <option th:each="subt: ${listaSubtipos}" th:value="${subt.id}" th:text="${subt.nombre}"></option>
+    </select>
+
+</div>
